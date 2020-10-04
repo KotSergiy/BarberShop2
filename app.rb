@@ -15,6 +15,7 @@ end
 before do
 	#@barbers=Barber.order "created_at DESC"
 	@barbers=Barber.all
+	@clients=Client.all
 end
 
 get '/' do
@@ -32,6 +33,8 @@ post '/visit' do
 	@barber=params['barber']
 	@color=params['color']
 
-	#erb "<h2>Спасибо, вы записались!</h2>"
-	erb :visit
+	Client.create(name: @user_name, phone: @phone, datestamp: @date_time, barber: @barber, color: @color)
+
+	erb "<h2>Спасибо, вы записались!</h2>"
+	#erb :visit
 end
