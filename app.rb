@@ -12,10 +12,14 @@ end
 class Barber < ActiveRecord::Base
 end
 
+class Contact < ActiveRecord::Base
+end
+
 before do
 	#@barbers=Barber.order "created_at DESC"
 	@barbers=Barber.all
 	@clients=Client.all
+	@contacts=Contact.all
 end
 
 get '/' do
@@ -36,5 +40,28 @@ post '/visit' do
 	Client.create(name: @user_name, phone: @phone, datestamp: @date_time, barber: @barber, color: @color)
 
 	erb "<h2>Спасибо, вы записались!</h2>"
-	#erb :visit
+end
+
+get '/contacts' do
+  erb :contacts
+end
+
+post '/contacts' do
+	@mail=params['email']
+	@msg=params['message']
+
+	hh={
+		:email=>'Введите адрес электронной почты',
+		:message=>'Введите сообщение'
+	}
+
+	hh.each do |key,val|
+		if params[key]==""
+			@error=hh[key]
+			return erb :contacts
+		end
+	end
+
+	Contact.create(mail: @mail, message: @msg)
+	erb "<h2>Сообщение отправлено!</h2>"
 end

@@ -30,3 +30,17 @@
     <% end %>
   </tbody>
 </table>
+<br>
+<h4>Сообщения</h4>
+<% @contacts.each do |post| %>
+  <p>
+    Получено от: <%= post.mail %>
+    <br>
+    <br>
+    <%= post.message %>
+    <br>
+    <br>
+    Добавлено: <%= post.created_at %>
+  </p>
+  <hr />
+<% end %>
