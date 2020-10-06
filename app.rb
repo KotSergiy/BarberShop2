@@ -37,9 +37,12 @@ end
 
 post '/visit' do
 	row=Client.new params[:client]
-	row.save
-
-	erb "<h2>Спасибо, вы записались!</h2>"
+	if row.save
+		erb "<h2>Спасибо, вы записались!</h2>"
+	else
+		@error=row.errors.full_messages.first
+		erb :visit
+	end
 end
 
 get '/contacts' do
