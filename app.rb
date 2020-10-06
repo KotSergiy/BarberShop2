@@ -23,7 +23,6 @@ end
 before do
 	#@barbers=Barber.order "created_at DESC"
 	@barbers=Barber.all
-	@clients=Client.all
 	@contacts=Contact.all
 end
 
@@ -73,4 +72,9 @@ end
 get '/barber/:id' do
 	@barber=Barber.find params[:id]
 	erb :barber
+end
+
+get '/clients' do
+	@clients=Client.all
+  erb :clients
 end
