@@ -75,6 +75,6 @@ get '/barber/:id' do
 end
 
 get '/clients' do
-	@clients=Client.all
+	@clients=Client.order 'created_at DESC'
   erb :clients
 end
