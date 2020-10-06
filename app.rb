@@ -69,3 +69,8 @@ post '/contacts' do
 	Contact.create(mail: @mail, message: @msg)
 	erb "<h2>Сообщение отправлено!</h2>"
 end
+
+get '/barber/:id' do
+	@barber=Barber.find params[:id]
+	erb :barber
+end
