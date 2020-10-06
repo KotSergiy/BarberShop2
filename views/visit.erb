@@ -12,22 +12,22 @@
     <form action="/visit" method="post">
       <div class="form-group">
         <label>Как вас зовут?</label>
-        <input name="user_name" type="text" class="form-control" value="<%=@user_name%>" placeholder="Ваше имя">
+        <input name="client[name]" type="text" class="form-control" value="" placeholder="Ваше имя">
       </div>
 
       <div class="form-group">
         <label>Ваш телефон:</label>
-        <input name="phone" type="text" class="form-control" value="<%=@phone%>" placeholder="Телефон">
+        <input name="client[phone]" type="text" class="form-control" value="" placeholder="Телефон">
       </div>
 
       <div class="form-group">
         <label>Когда вас ждать?</label>
-        <input id="datetimepicker" name="date_time" type="text" autocomplete="off" class="form-control" value="<%=@date_time%>" placeholder="Дата и время">
+        <input id="datetimepicker" name="client[datestamp]" type="text" autocomplete="off" class="form-control" value="" placeholder="Дата и время">
       </div>
 
       <div class="form-group">
         <label>Выбирите желаемого мастера:</label>
-        <select name="barber" class="form-control">
+        <select name="client[barber]" class="form-control">
           <% @barbers.each do |barber| %>
             <option <%= barber.name==@barber ? 'selected' : '' %>><%= barber.name %></option>
           <% end %>
@@ -36,7 +36,7 @@
 
       <div class="form-group">
         <label>Выбирите цвет краски:</label>
-        <select id="color" name="color">
+        <select id="color" name="client[color]">
           <option value="#7bd148">Green</option>
           <option value="#5484ed">Bold blue</option>
           <option value="#a4bdfc">Blue</option>
